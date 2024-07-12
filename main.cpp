@@ -1,9 +1,3 @@
-/*2女巫
-2平民
-2狼人
-1猎人
-1白狼王
-1.魔术师 */ 
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -12,7 +6,7 @@ string word[15]={"如果我说我是好人你信吗？ 如果我说我不是狼�
 string player[15];
 string me;
 int r; 
-unordered_map<string,int> id;
+map<string,int> id;
 int condition[105];
 int killedbywolf[105];
 int kbwnum;
@@ -827,10 +821,10 @@ void prophet_computer(int n)
 	  }
 	  dnum=0;
  }
-signed main()
+signed main(int32_t argc = 0)
 {
-	
-	srand(time(0));
+	if(argc != 0)	srand(argc);
+	else srand(time(nullptr));
 	cout<<"在16世纪时，人们都会相信有女巫、吸血鬼之类的存在。"<<endl;
 	cout<<"如果你是被冠上“狼人”或者“女巫”的罪名，"<<endl;
 	cout<<"都会被处以火刑，或者是被银器杀死。"<<endl;
