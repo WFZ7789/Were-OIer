@@ -822,7 +822,7 @@ void prophet_computer(int n)
 	  }
 	  dnum=0;
  }
-int main(int32_t argc = 0)
+signed main(int32_t argc = 0)
 {
 	if(argc != 0) srand(argc);
 	else srand(time(nullptr));
