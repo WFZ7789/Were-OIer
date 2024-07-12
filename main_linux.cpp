@@ -822,10 +822,14 @@ void prophet_computer(int n)
 	  }
 	  dnum=0;
  }
-signed main(int32_t argc = 0)
+signed main()
 {
-	if(argc != 0) srand(argc);
-	else srand(time(nullptr));
+	cout<<"请输入种子，输入 0 即使用随机种子:";
+	int _seed;
+	cin >> _seed;
+	if(_seed != 0)	srand(_seed);
+	else	srand(time(nullptr));
+	cout << "种子为:" << (_seed == 0 ? time(nullptr) : _seed) << endl;
 	cout<<"在16世纪时，人们都会相信有女巫、吸血鬼之类的存在。"<<endl;
 	cout<<"如果你是被冠上“狼人”或者“女巫”的罪名，"<<endl;
 	cout<<"都会被处以火刑，或者是被银器杀死。"<<endl;
