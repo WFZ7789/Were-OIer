@@ -48,12 +48,16 @@ GNU_Linux / MacOSX
 本游戏的制作人员：
 - [Base_ring_tree](https://www.luogu.com.cn/user/950498)
 - [wfirstzhang](https://www.luogu.com.cn/user/1312537)
+
 测试人员：
 - [fuchenxi666](https://www.luogu.com.cn/user/1342628)
 - [protractor](https://www.luogu.com.cn/user/964822)
 - [zrl123456](https://www.luogu.com.cn/user/1115784)
+
 以及浏览这个 repo 的你。
+
 由 @WFZ7789 在 github 上发布。
+
 如果发现 BUG，请[提交issue](https://github.com/WFZ7789/Were-OIer/issues)。
 ## 附录
 ### 附录A 旧版控制台
