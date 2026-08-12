@@ -1,63 +1,37 @@
-# Were-OIer
-## 目录
-- [环境](#环境)
-- [运行方法](#运行方法)
-- [简要说明](#简要说明)
-- [关于](#关于)
-## 环境
-目前已经测试了如下环境：
-- 系统：Windows 10 1809 64-bit
-- 编译器：TDM-GCC 4.9.2 64-bit Release（DEV_C++ 5.11 & TDM-GCC 4.9.2, with `-std=c++14`）
-- 终端：旧版控制台（[怎样打开？](#附录A-旧版控制台)）
-## 运行方法
-DEV-C++开启 `-std=c++14` 开启旧版控制台编译运行。
-## 简要说明
-1. **主界面**:
-   1. 查看获得的结局。
-   2. 查看获得的成就。
-   3. 输入密码开启礼包。
-   4. 打开商店。
-   5. 开启游戏。
-2. **游戏人数和角色设置**:
-   - 游戏共有 10 个玩家，角色包括平民、狼人、魔术师、猎人、女巫、白狼王和预言家。
-   - 每个玩家在游戏开始时随机分配一个角色。
-   - 你是 10 号玩家。
+# Were-OIer v0.3
 
-3. **游戏流程**:
-   - 夜晚阶段: 各个角色依次发挥自己的能力，如狼人救人/杀人、女巫救人/杀人、预言家查验身份等。
-   - 白天阶段: 玩家可以自由讨论并投票放逐一名玩家。被放逐的玩家身份会被公布。
+Were-OIer is being rebuilt as a deterministic, cross-platform social-deduction game. This branch is the first playable vertical slice of the new engine; the 2024 single-file version remains available as legacy history.
 
-4. **角色能力**:
-   - 狼人: 夜晚可以杀死或救一名玩家。
-   - 白狼王: 夜晚可以单独杀人,如果死亡还可以带走一名玩家。
-   - 女巫: 夜晚可以救活一名被狼人杀死的玩家,或者毒杀一名存活玩家。
-   - 预言家: 夜晚可以查验一名玩家的身份。
-   - 魔术师: 夜晚可以交换两名玩家的身份牌。
+## What is playable
 
-5. **胜利条件**:
-   - 如果狼人和白狼王的数量大于其他角色，则狼人阵营获胜。
-   - 如果狼人和白狼王的数量小于等于其他角色，则平民阵营获胜。
+- Ten seats with Villager, Werewolf, Seer, Witch and Hunter.
+- A complete night → discussion → vote loop.
+- Structured accusations, defenses, role claims and questions.
+- Per-agent suspicion and credibility that directly determine AI votes.
+- Public vote reasons and private Seer/Witch information.
+- Seeded deterministic games and safe line-based terminal input.
 
-6. **结局设置**:
-   - 游戏共有 11(9) 种不同的结局。取决于玩家的身份、能力使用以及游戏过程中的关键事件。
-   - 8 种成就，可以在礼包和结局中获得。其中 `不死圣人` 和 `老玩家` 都有 Lv. 1-3，`作者的馈赠` 有 Lv. 1-2。
+The first slice deliberately does not migrate Magician, White Wolf King, achievements, the role shop or gift codes. They return only after the deduction loop is stable and each feature has a gameplay purpose.
 
-7. **玩家讨论和投票**:
-   - 根据语言包 `word` 模拟了玩家在白天讨论时的发言行为（虽然放逐的人几乎都是自己决定），并进行投票放逐某个玩家。
-## 关于
-本游戏的制作人员：
-- [Base_ring_tree](https://www.luogu.com.cn/user/950498)
-- [wfirstzhang](https://www.luogu.com.cn/user/1312537)
+## Build and run
 
-测试人员：
-- [fuchenxi666](https://www.luogu.com.cn/user/1342628)
-- [protractor](https://www.luogu.com.cn/user/964822)
-- [zrl123456](https://www.luogu.com.cn/user/1115784)
+Requirements: CMake 3.20+, Ninja and a C++20 compiler.
 
-由 @WFZ7789 在 github 上发布。
+```sh
+cmake --preset debug
+cmake --build --preset debug
+ctest --preset debug
+./build/debug/were_oier 20260812
+```
 
-如果发现 BUG，请[提交issue](https://github.com/WFZ7789/Were-OIer/issues)。
-## 附录
-### 附录A 旧版控制台
-![image](https://github.com/user-attachments/assets/9f41711c-94d7-4606-8fa3-60e6a1f20890)
-控制台上方右键，打开“xxx属性”，勾选“使用旧版控制台(U)”框。
+The optional number is the game seed. Identical seeds and action sequences reproduce the same match.
+
+## Project map
+
+- `include/were_oier/`: typed game contracts.
+- `src/game.cpp`: rules, hidden information, beliefs, AI and event log.
+- `src/main.cpp`: terminal adapter only.
+- `tests/`: deterministic and legacy-regression coverage.
+- `ARCHITECTURE.md`: invariants for the rebuild.
+- `ROADMAP.md`: staged content migration and deduction depth.
+
